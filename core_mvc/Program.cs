@@ -18,7 +18,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=EmpInsert}/{action=index_pageload}/{id?}")
+    pattern: "{controller=EmpLogin}/{action=Login_pageload}/{id?}")
     .WithStaticAssets();
 
 

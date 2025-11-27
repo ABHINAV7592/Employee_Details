@@ -7,9 +7,10 @@ namespace core_mvc.Controllers
     public class profileEMP : Controller
     {
         EmployeeDB dbobj = new EmployeeDB();
-        public IActionResult Userprofile_pageload()
+        public IActionResult Userprofile_pageload(int id) //same variable name given in model
         {
-            return View();
+            EmployeeInsert getlist = dbobj.selectprofiledb(id);
+            return View(getlist);
         }
     }
 }
