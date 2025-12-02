@@ -1,0 +1,23 @@
+﻿@model IEnumerable<core_mvc.Models.EmployeeInsert>
+<h2>ALL EMPLOYEE DETAILS</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(var emp in Model)
+        {
+            <tr>
+                <td>@emp.emp_id</td>
+                <td>@emp.emp_name</td>
+                <td>@emp.emp_address</td>
+                <td>@emp.emp_salary</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -85,5 +85,63 @@ namespace core_mvc.Models
                 throw;
             }
         }
+        public string updateprofile(EmployeeInsert objcls)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_profileupdate", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@eid",objcls.emp_id);
+                cmd.Parameters.AddWithValue("@esal", objcls.emp_salary);
+                cmd.Parameters.AddWithValue("@eaddr", objcls.emp_address);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return ("Updated Successfully");
+            }
+            catch(Exception ex)
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                return ex.Message.ToString();
+                
+            }
+        }
+        public List<EmployeeInsert> selectDB()
+        {
+            var list = new List<EmployeeInsert>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_selectall", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    var o = new EmployeeInsert
+                    {
+                        emp_id = Convert.ToInt32(sdr["emp_id"]),
+                        emp_name = sdr["emp_name"].ToString(),
+                        emp_address = sdr["emp_address"].ToString(),
+                        emp_salary = sdr["emp_salary"].ToString()
+                    };
+                    list.Add(o);
+                    
+                }
+                con.Close();
+                return list;
+            }
+            catch(Exception)
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                throw;
+                
+            }
+        }
     }
 }
