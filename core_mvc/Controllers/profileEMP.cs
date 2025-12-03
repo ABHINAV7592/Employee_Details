@@ -26,7 +26,8 @@ namespace core_mvc.Controllers
             {
                 TempData["msg1"] = ex.Message;
             }
-            return View("Userprofile_pageload");
+            //return View("Userprofile_pageload");
+            return RedirectToAction("Userprofile_pageload", new { id = objcls.emp_id });
         }
     }
 }
