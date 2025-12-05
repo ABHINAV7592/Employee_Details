@@ -23,6 +23,20 @@
                         <button class="btn btn-success btn-xs" type="submit">Details</button>
                     }
                 </td>
+
+                <td>
+                    @using (Html.BeginForm("deleteDB", "DisplayAll", new { id = emp.emp_id }, FormMethod.Post))
+                    {
+                        <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+                    }
+                </td>
+
+                <td>
+                    @using (Html.BeginForm("Edittab", "DisplayAll", new { id = emp.emp_id }, FormMethod.Post))
+                    {
+                        <button class="btn btn-danger btn-xs" type="submit">Edit</button>
+                    }
+                </td>
             </tr>
         }
     </tbody>
