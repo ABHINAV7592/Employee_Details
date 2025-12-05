@@ -1,0 +1,41 @@
+﻿@model core_mvc.Models.EmployeeInsert
+<div>
+    <h4>Display Details</h4>
+    </hr>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model=>Model.emp_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model=>Model.emp_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.emp_name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.emp_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.emp_address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.emp_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.emp_salary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.emp_salary)
+        </dd>
+    </dl>
+</div>
+<p>
+    @using(Html.BeginForm("Edittab","DisplayAll",new {id=Model.emp_id},FormMethod.Post))
+    {
+        <button class="btn btn-success btn-xs" type="submit">Edit</button>
+    }
+</p>
+@Html.ActionLink("Back To List", "displayall_pageoad", "DisplayAll")

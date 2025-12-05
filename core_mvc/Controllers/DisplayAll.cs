@@ -26,5 +26,27 @@ namespace core_mvc.Controllers
             }
             return View(employees);
         }
+        public IActionResult detalistab(int? id) //? is because geting details via url, like we did in query string
+        {
+            EmployeeInsert emp = null;
+            using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5163/EmpDetails/");
+                var responseTask = client.GetAsync($"gettabwithid/{id}"); //$ is for concating id.
+                responseTask.Wait();
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<EmployeeInsert>();
+                    readTask.Wait();
+                    emp = readTask.Result;
+                }
+                else
+                {
+                    emp = new EmployeeInsert();
+                }
+            }
+            return View(emp);
+        }
     }
 }

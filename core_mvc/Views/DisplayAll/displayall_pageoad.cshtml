@@ -17,6 +17,12 @@
                 <td>@emp.emp_name</td>
                 <td>@emp.emp_address</td>
                 <td>@emp.emp_salary</td>
+                <td>
+                    @using (Html.BeginForm("detalistab", "DisplayAll", new { id = emp.emp_id }, FormMethod.Post))
+                    {
+                        <button class="btn btn-success btn-xs" type="submit">Details</button>
+                    }
+                </td>
             </tr>
         }
     </tbody>
