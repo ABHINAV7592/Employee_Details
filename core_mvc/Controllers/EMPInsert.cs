@@ -14,19 +14,36 @@ namespace core_mvc.Controllers
 
         public IActionResult index_click(EmployeeInsert objcls)
         {
-            try
+            //core mvc code
+
+            //try
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        string resp = dbobj.InsertDB(objcls);
+            //        TempData["msg"] = resp;
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    TempData["msg"] = ex.Message;
+            //}
+            //return View("index_pageload");
+
+
+            //core API calling code
+            using(var client=new HttpClient())
             {
-                if (ModelState.IsValid)
+                client.BaseAddress = new Uri("http://localhost:5163/EmpDetails/"); //mvc_api uri and controller name of web_api
+                var postTask = client.PostAsJsonAsync<EmployeeInsert>("posttab", objcls);
+                postTask.Wait();
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    string resp = dbobj.InsertDB(objcls);
-                    TempData["msg"] = resp;
+                    return RedirectToAction("displayall_pageoad", "DisplayAll");
                 }
             }
-            catch(Exception ex)
-            {
-                TempData["msg"] = ex.Message;
-            }
-            return View("index_pageload");
+            return RedirectToAction("displayall_pageoad", "DisplayAll");
         }
     }
 }

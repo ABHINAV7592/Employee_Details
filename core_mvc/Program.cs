@@ -18,7 +18,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=EMPLogin}/{action=Login_pageload}/{id?}")
+    pattern: "{controller=DisplayAll}/{action=displayall_pageoad}/{id?}")
     .WithStaticAssets();
 
 
